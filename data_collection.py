@@ -23,7 +23,7 @@ def load_params(filepath: str) -> float:
 
 def split_data(data : pd.DataFrame,test_size: float) ->tuple[pd.DataFrame,pd.DataFrame]: 
     try:
-        return train_test_split(data,test_size,random_state= 42)
+        return train_test_split(data,test_size = test_size,random_state= 42)
     except Exception as e:
         raise ValueError(f"Error in splitting data {e}")
     
@@ -41,8 +41,11 @@ def main():
         data = load_data(data_filepath)
         test_size = load_params(params_filepath)
         train_data,test_data = split_data(data,test_size)
-        os.makedirs(raw_data_path)
-        save_data(train_data,os.path.join(raw_data_path,"train_csv"))
-        save_data(test_data,os.path.join(raw_data_path,"test_csv"))
+        os.makedirs(raw_data_path,exist_ok=True)
+        save_data(train_data,os.path.join(raw_data_path,"train.csv"))
+        save_data(test_data,os.path.join(raw_data_path,"test.csv"))
     except Exception as e:
         raise Exception(f"An error occured : {e}")
+    
+if __name__ == "__main__":
+    main()

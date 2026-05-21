@@ -1,0 +1,41 @@
+stages:
+  data_collection:
+    cmd: python data_collection.py
+    params:
+    - data_collection.test_size
+    deps:
+    - data_collection.py
+    outs:
+    - data/raw
+  data_prep:
+    cmd: python data_prep.py
+    deps:
+    - data/raw
+    - data_prep.py
+    outs:
+    - data/processed
+  data_visualization:
+    cmd: python data_visualization.py
+    deps:
+    - data\processed\train_processed.csv
+    - data_visualization.py
+    outs:
+    - reports/plots
+  model_building:
+    cmd: python model_building.py
+    params:
+    - model_building.n_estimators
+    deps:
+    - data\processed
+    - model_building.py
+    - params.yaml
+    outs:
+    - model.pkl
+  model_eval:
+    cmd: python model_eval.py
+    deps:
+    - data\processed\test_processed.csv
+    - model.pkl
+    - model_eval.py
+    outs:
+    - output_reports/metrics.json
