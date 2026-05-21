@@ -11,7 +11,7 @@ def load_data(filepath: str) -> pd.DataFrame:
 def preprocess(df: pd.DataFrame) -> pd.DataFrame:
     # Drop unnecessary columns
     df = df.drop(
-        columns=["date", "street", "country", "waterfront", "yr_renovated", "condition","sqft_lot","view"],
+        columns=["date", "street", "country", "waterfront", "yr_renovated", "condition","sqft_lot","view","statezip","city"],
         errors="ignore"
     )
 

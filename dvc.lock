@@ -26,21 +26,21 @@ stages:
       nfiles: 2
     - path: data_prep.py
       hash: md5
-      md5: 01c21f3c12bccc4c271aee535388f181
-      size: 2636
+      md5: 4ce13a52d409812503f145f7546b26e2
+      size: 2654
     outs:
     - path: data/processed
       hash: md5
-      md5: a72773c942aac9f97951095142373385.dir
-      size: 3303027
+      md5: b52286477843c0af9dd8bb8034675df4.dir
+      size: 252190
       nfiles: 2
   data_visualization:
     cmd: python data_visualization.py
     deps:
     - path: data\processed\train_processed.csv
       hash: md5
-      md5: d17ee0e32a8103048e5208a2088024c6
-      size: 2671932
+      md5: b044e587277988fc939f0b6d19c390ba
+      size: 201699
     - path: data_visualization.py
       hash: md5
       md5: 1d557fd8cd1ff5681a7c4f155600ba28
